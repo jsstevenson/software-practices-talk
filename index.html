@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>reveal.js</title>
+
+  <link rel="stylesheet" href="dist/reset.css" />
+  <link rel="stylesheet" href="dist/reveal.css" />
+  <link rel="stylesheet" href="dist/theme/black.css" />
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+the OG classic
+https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+reproducible
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003285
+effective
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003506
+missing mit
+https://missing.csail.mit.edu/
+
+"A quick guide for organizing computational biology projects" https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424
+
+"Best practices for scientific computing" https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
+
+"Good enough practices for scientific computing" https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510
+
+"Research workflow" https://www.carlboettiger.info/2012/05/06/research-workflow.html
+
+Python filesystem structure http://as.ynchrono.us/2007/12/filesystem-structure-of-python-project_21.html
+
+Software tool commitments http://big-data-biology.org/software/commitments/
+
+test driven development
+-->
+      <section class="top" data-background-image="images/lego.jpg" data-background-size="contain"
+        data-background-color="black">
+        <div id="title" style="
+              border-radius: 15px;
+              background: rgba(255, 255, 255, 0.8);
+              padding: 20px;
+            ">
+          <div class="title-text-box">
+            <b>
+              <h3 style="color: rgb(60, 60, 60); text-transform: none">
+                Science Computing With Science Friends
+              </h3>
+              <p style="color: rgb(60, 60, 60)">James Stevenson</p>
+              <p style="color: rgb(60, 60, 60)">2022/04/27</p>
+            </b>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3>Outline</h3>
+        <p></p>
+        <ul>
+          <li>Outline</li>
+          <li>Friends</li>
+          <li>Git</li>
+          <li>Workflow</li>
+          <li>Style</li>
+          <li>Analysis</li>
+        </ul>
+      </section>
+
+      <section>
+        <section>
+          <h3>Friends?</h3>
+          <img data-src="images/friends.png" />
+        </section>
+        <section>
+          <ul>
+            <li>Friends we know</li>
+            <li>Friends we don't</li>
+            <li>Ourselves</li>
+          </ul>
+          <p>Our computational artifacts should be <em>accessible</em> to <em>all of them</em>.</p>
+        </section>
+        <section>
+          <h3>Kinds of computational artifacts:</h3>
+          <ul>
+            <li>Tools</li>
+            <li>Analyses</li>
+          </ul>
+        </section>
+        <section>
+          <img data-src="images/venn.png" class="r-stretch" />
+          <p class="footnote">Charles L. Isbell, Lynn Andrea Stein, Robb Cutler, Jeffrey Forbes, Linda Fraser, John
+            Impagliazzo, Viera
+            Proulx, Steve Russ, Richard Thomas, and Yan Xu. 2010. (Re)defining computing curricula by (re)defining
+            computing. SIGCSE Bull. 41, 4 (December 2009), 195–207. DOI:https://doi.org/10.1145/1709424.1709462
+          </p>
+        </section>
+        <section>
+          <h3>Science demands openness</h3>
+          <ul>
+            <li>Show your work (fight the replication crisis)</li>
+            <li>If people find you, they can cite you (h-index ^^^^^)</li>
+            <li>Uncle Sam pays your salary, sort of</li>
+            <li>It's a commitment (https://www.big-data-biology.org/software/commitments/)</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Git -->
+      <!--
+GitHub
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004947
+what makes an issue
+handle PR
+conventional commits
+
+-->
+      <section>
+        <section data-background-image="">
+          <h2>Git/GitHub</h2>
+          <img src="images/git.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>What's it for?</h3>
+          <ul>
+            <li>Understand code</li>
+            <li>Fix bugs</li>
+            <li>Manage tasks</li>
+            <li>Share work</li>
+            <li>Collaborate with new friends</li>
+            <li>Backup in case laptop destroyed by ninjas</li>
+            <li>~other things~</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Commit history</h3>
+          <img data-src="images/dgidb_commits.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Commit history</h3>
+          <img data-src="images/commit_history.png" class="r-stretch" />
+          <aside class="notes">
+            particularly helpful for "analysis"/reverting screwy changes
+          </aside>
+        </section>
+        <section>
+          <h3>command line wowwww colors</h3>
+          <img data-src="images/git_lg.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>diffs</h3>
+          <pre><code data-trim data-noescape>
+            % git diff 3b768ea 9ba82f8
+          </code></pre>
+          <p>
+            github.com/ga4gh/vrs-python/compare/9ba82f8cc5a..4e9742b
+          </p>
+        </section>
+        <section>
+          <h3>git blame</h3>
+          <img data-src="images/git_blame.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>git blame</h3>
+          <img data-src="images/off_topic_commit.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>ZenHub</h3>
+          <img data-src="images/zenhub.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Actions</h3>
+          <img data-src="images/jobs.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>What do we need for all of that ^ ?</h3>
+          <p>Good issues</p>
+          <p>Good commits</p>
+          <p>A ban on procrastination</p>
+        </section>
+        <section>
+          <h3>But that's hard!</h3>
+          <img data-src="images/jail.jpg" class="r-stretch" />
+        </section>
+      </section>
+
+      <!-- Workflow -->
+      <!--
+virtuale environments
+makefiles?
+TDD
+-->
+      <section>
+        <section data-background-image="images/modern_times.png">
+          <div id="title" style="
+                border-radius: 15px;
+                background: rgba(47, 56, 46, 0.687);
+                padding: 20px;
+              ">
+            <div class="title-text-box">
+              <b>
+                <h3 style="text-transform: none">The Wagner Flow&trade;</h3>
+              </b>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>High level</h3>
+          <img data-src="images/flow.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Constraints (limits are our friends)</h3>
+          <img data-src="images/rails.jpg" class="r-stretch" />
+          <p>Issues create structure</p>
+          <p>Commits create sub-structure</p>
+        </section>
+        <section>
+          <h3>1) Issues</h3>
+          <ul>
+            <li>When in doubt, create them</li>
+            <li>Errors, features, stray thoughts</li>
+            <li>Either edit or add comments with notes</li>
+            <li>Break into new issues where appropriate</li>
+            <li>They are extremely googleable</li>
+          </ul>
+        </section>
+        <section>
+          <img data-src="images/issues.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>2) Claiming an issue</h3>
+          <ul>
+            <li>Self-assign on GitHub</li>
+            <li>Create a branch locally, eg </li>
+            <pre>git checkout <b>staging</b></pre>
+            <pre>git checkout -b issue-42</pre>
+          </ul>
+          <aside class="notes">
+            No need to keep secondary copies of repos: very hard to make unfixable changes in git
+            Also branching off of staging is critical
+          </aside>
+        </section>
+        <section>
+          <h3>Issues: ask yourself</h3>
+          <ul>
+            <li>Does this issue require tests?</li>
+            <p>&rarr; Write them first maybe! (TDD)</p>
+            <li>Does this issue require documentation?</li>
+            <p>Write it! (probably last)</p>
+          </ul>
+        </section>
+        <section>
+          <h3>3) Commits</h3>
+          <ul>
+            <li><em>"should"</em> encompass complete, discrete changes</li>
+            <li>brief messages in imperative mood, completes the sentence "This commit will..." </li>
+            <li>Can use body/footer for additional details (
+              <pre>git commit</pre> w/ no
+              <pre>-m "message"</pre>)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Pre-commit</h3>
+          <p style="text-align:left">In projects that use it:</p>
+          <pre>pre-commit install</pre>
+          <p style="text-align:left">Style checks, other security-y things before commits go through</p>
+        </section>
+        <section>
+          <h3>4) Pull requests</h3>
+          <ul>
+            <li>Your branch &rarr; staging</li>
+            <li>Most repos have review policies: assign review to maintainers</li>
+            <li>Explicate any outstanding questions</li>
+            <li>Pay attention to test results in Actions</li>
+            <li>When it's ready and approved, merge it yourself</li>
+            <li>Manually close issue</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Link PRs to issues</h3>
+          <img data-src="images/pr_1.png" class="r-stretch" />
+        </section>
+        <section>
+          <img data-src="images/pr_2.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>CI: Actions</h3>
+          <img data-src="images/pr_3.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Actions</h3>
+          <img data-src="images/pr_4.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Aside: conventional commits</h3>
+          <img data-src="images/conv_comm.png" class="r-stretch" />
+          <p>type(scope): short description (#pr number)</p>
+        </section>
+        <section>
+          <h3>Conventional commits tools include:</h3>
+          <ul>
+            <li>Autogenerate change logs</li>
+            <li>Automatically bump consistent with semantic versioning</li>
+            <li>(also good template for commits generally, guardrails are our friends)</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Releases</h3>
+          <p>Use semantic versioning: major.minor.patch</p>
+        </section>
+        <section>
+          <h3>CD: Code Pipeline</h3>
+          <img data-src="images/cp_1.png" class="r-stretch" />
+        </section>
+        <section>
+          <img data-src="images/cp_2.png" class="r-stretch" />
+        </section>
+        <section>
+          <img data-src="images/cp_3.png" class="r-stretch" />
+        </section>
+      </section>
+
+      <!-- Style -->
+      <!--
+Notes:
+ - comments
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006561
+ - errors
+ - precommit:
+ - type checking
+ - linting etc
+
+        -->
+      <section>
+        <section>
+          <h3 style="text-transform: none">Style</h3>
+          <img data-src="images/prada.jpg" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Why does it matter?</h3>
+          <ul>
+            <li>Readability, accessibility</li>
+            <li>Stunting</li>
+            <li>Have some pride in your craft for god's sake</li>
+          </ul>
+          <aside class="notes">
+            bad style is a code smell sort of
+          </aside>
+        </section>
+        <section>
+          <h3>Linting</h3>
+          <p>Flake8: serene, minimal, difficult</p>
+          <p>Black: automated, deterministic, a little quirky</p>
+        </section>
+        <section>
+          <h3>Comments</h3>
+          <p>"Code should be self-documenting"</p>
+          <p>Use comments to explain <b>why</b>, not <b>what</b></p>
+        </section>
+        <section>
+          <h3>Python docstrings</h3>
+          <img data-src="images/docstring.png" class="r-stretch" />
+          <p>Here be monsters</p>
+        </section>
+        <section>
+          <h3>Type annotations</h3>
+          <p>The best kind of documentation</p>
+          <p>Enable static analysis</p>
+          <p>~required for wagner projects</p>
+        </section>
+        <section>
+          <img data-src="images/type_hint.png" class="r-stretch" />
+        </section>
+        <section>
+          <img data-src="images/type_preview.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>Dates</h3>
+          <p></p>
+          <b>Use ISO-8601.</b>
+          <p></p>
+          <ul>
+            <li>
+              <i>YYYY-MM-DD</i>
+            </li>
+            <li>
+              <i>YYYYMMDD</i>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- analysis -->
+      <!--
+jupyter notebooks:
+https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007007
+-->
+      <section>
+        <section data-background-image="images/alex_writing.jpg">
+          <div id="title" style="
+                border-radius: 15px;
+                background: rgba(255, 255, 255, 0.324);
+                padding: 20px;
+              ">
+            <div class="title-text-box">
+              <b>
+                <h3 style="text-transform: none; color:rgb(39, 39, 39)">Analysis</h3>
+              </b>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Use virtual environments</h3>
+          <p>pip freeze &rarr; generate a lockfile</p>
+          <p>Sort of a foundation of reproducibility</p>
+          <p class="footnote"> Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013) Ten Simple Rules for Reproducible
+            Computational Research. PLOS Computational Biology 9(10): e1003285.
+            https://doi.org/10.1371/journal.pcbi.1003285 </p>
+        </section>
+        <section>
+          <h3>File locations</h3>
+          <p>Don't hardcode!</p>
+          <ul>
+            <li>Relative paths from __main__</li>
+            <li>
+              Environment variables
+            </li>
+            <li>CLI arguments</li>
+            <li>Software solutions: https://github.com/cthoyt/pystow</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Use markdown cells</h3>
+          <img data-src="images/nb_md.png" class="r-stretch" />
+          <p>Maintain readable notes, like a lab notebook</p>
+        </section>
+        <section>
+          <h3>Add a citation to your repo</h3>
+          <img data-src="images/cite.png" class="r-stretch" />
+        </section>
+        <section>
+          <h3>I liked this editorial</h3>
+          <p> Rule A, Birmingham A, Zuniga C, Altintas I, Huang SC, et al. (2019) <b>Ten simple rules for writing and
+              sharing computational analyses in Jupyter Notebooks.</b> PLOS Computational Biology 15(7): e1007007.
+            https://doi.org/10.1371/journal.pcbi.1007007 </p>
+        </section>
+        <section>
+          <h3>I also like this talk</h3>
+          <p>"I Like Notebooks" by Jeremy Howard</p>
+        </section>
+        <section>
+          <h3>People love writing about this</h3>
+            <img data-src="images/header1.png" />
+            <img data-src="images/header2.png" />
+            <img data-src="images/header3.png" />
+            <img data-src="images/header4.png" />
+            <img data-src="images/header5.png" />
+        </section>
+      </section>
+
+      <section>
+        <h3>Further reading</h3>
+        <ul>
+          <li>Wilson et al, "Best Practices for Scientific Computing"</li>
+          <li>MIT: "The Missing Semester"</li>
+          <li>Luis Coelho lab, "Lab Software Tool Commitments"</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+
+</html>
